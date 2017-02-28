@@ -3548,6 +3548,8 @@ void cv::medianBlur( InputArray _src0, OutputArray _dst, int ksize )
     {
         cv::copyMakeBorder( src0, src, 0, 0, ksize/2, ksize/2, BORDER_REPLICATE );
 
+        CV_Assert(src.ptr()!=NULL);
+
         int cn = src0.channels();
         CV_Assert( src.depth() == CV_8U && (cn == 1 || cn == 3 || cn == 4) );
 
