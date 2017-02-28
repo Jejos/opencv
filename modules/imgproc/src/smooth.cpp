@@ -3494,7 +3494,7 @@ void cv::medianBlur( InputArray _src0, OutputArray _dst, int ksize )
 
     CV_Assert( (ksize % 2 == 1) && (_src0.dims() <= 2 ));
 
-    if( ksize <= 1 )
+    if( ksize <= 1 || _src0.empty() )
     {
         _src0.copyTo(_dst);
         return;
@@ -3546,9 +3546,6 @@ void cv::medianBlur( InputArray _src0, OutputArray _dst, int ksize )
     }
     else
     {
-        if( _src0.empty() )
-            return;
-
         cv::copyMakeBorder( src0, src, 0, 0, ksize/2, ksize/2, BORDER_REPLICATE );
 
         int cn = src0.channels();
